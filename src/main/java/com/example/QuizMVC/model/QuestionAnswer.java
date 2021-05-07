@@ -25,20 +25,8 @@ public class QuestionAnswer {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     public String getQuestions() {
         return questions[index];
-    }
-
-    public String getAnswers(int index) {
-        return answers[index];
-    }
-
-    public String getUserAns() {
-        return userAns;
     }
 
     public void setUserAns(String userAns) {
