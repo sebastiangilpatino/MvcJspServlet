@@ -22,6 +22,9 @@ public class HelloServlet extends HttpServlet {
         questionAnswer.setUserAns(ans);
         questionAnswer.checkAns();
         questionAnswer.setIndex(questionAnswer.getIndex()+1); //set index to classes
+        if(questionAnswer.getIndex()>=questionAnswer.getQuestionsLength()){
+            request.getRequestDispatcher("final.jsp").forward(request,response);
+        }
         request.getSession().setAttribute("quiz",questionAnswer);
         request.getRequestDispatcher("index.jsp").forward(request,response);
     }

@@ -11,22 +11,15 @@
         <%
             if (request.getSession().getAttribute("quiz") != null) {
                 QuestionAnswer questionAnswer = (QuestionAnswer) request.getSession().getAttribute("quiz");
-                if (questionAnswer.getIndex() < 5) {
+
         %>
         <p> Your current score is: <%= questionAnswer.getScore() %>
         </p>
         <p>Guess the next number in the sequence</p>
         <p><%= questionAnswer.getQuestions()%>
         </p>
-        <form action='hello-servlet' method='get'>
-            <div>Your answer: <input type='text' name='answer'></div>
-            <br><input type='submit'></form>
-        <%
-        } else {
 
-        %>
-        <p> You have completed the Number Quiz, with a score of  <%= questionAnswer.getScore() %> out of 5 </p>
-        <% } %>
+
         <% } else {
             QuestionAnswer questionAnswer = new QuestionAnswer();
             request.getSession().setAttribute("quiz", questionAnswer);
@@ -37,14 +30,14 @@
         <p>Guess the next number in the sequence</p>
         <p><%= questionAnswer.getQuestions()%>
         </p>
-        <form action='hello-servlet' method='get'>
-            <div>Your answer: <input type='text' name='answer'></div>
-            <br><input type='submit'></form>
+
 
         <%
             }
         %>
-
+        <form action='hello-servlet' method='get'>
+            <div>Your answer: <input type='text' name='answer'></div>
+            <br><input type='submit'></form>
 
     </body>
 </html>

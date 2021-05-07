@@ -58,5 +58,8 @@ public class QuestionAnswer {
     public void setIndex(int index) {
         this.index = index;
     }
+    public int getQuestionsLength(){
+        return questions.length;
+    }
 }
 
