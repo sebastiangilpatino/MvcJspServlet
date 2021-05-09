@@ -34,7 +34,9 @@ public class QuestionAnswer {
     }
 
     public void checkAns(){
-        if (userAns.equals(answers[index])){
+        if(userAns == null){
+            return;
+        }else if (userAns.equals(answers[index])){
             score += 1;
          }
     }

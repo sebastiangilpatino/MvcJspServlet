@@ -17,17 +17,30 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String ans = request.getParameter("answer");
-        QuestionAnswer questionAnswer = (QuestionAnswer) request.getSession().getAttribute("quiz");
-        questionAnswer.setUserAns(ans);
-        questionAnswer.checkAns();
-        questionAnswer.setIndex(questionAnswer.getIndex()+1); //set index to classes
-        if(questionAnswer.getIndex()>=questionAnswer.getQuestionsLength()){
+        QuestionAnswer questionAnswer;
+        questionAnswer = (QuestionAnswer) request.getSession().getAttribute("quiz");
+
+        if(request.getSession().getAttribute("quiz") == null){
             questionAnswer = new QuestionAnswer();
-            request.getRequestDispatcher("final.jsp").forward(request,response);
         }
-        request.getSession().setAttribute("quiz",questionAnswer);
-        request.getRequestDispatcher("index.jsp").forward(request,response);
+
+        String ans = request.getParameter("answer");
+
+        if (ans != null) {
+            questionAnswer.setUserAns(ans);
+            questionAnswer.checkAns();
+            questionAnswer.setIndex(questionAnswer.getIndex() + 1); //set index to classes
+            if (questionAnswer.getIndex() >= questionAnswer.getQuestionsLength()) {
+                questionAnswer = new QuestionAnswer();
+                request.getRequestDispatcher("final.jsp").forward(request, response);
+            }
+
+        }
+
+        request.getSession().setAttribute("quiz", questionAnswer);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+//        QuestionAnswer questionAnswer = (QuestionAnswer) request.getSession().getAttribute("quiz");
+
     }
 
     public void destroy() {
